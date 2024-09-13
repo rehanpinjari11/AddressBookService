@@ -1,0 +1,143 @@
+-- UC1 --
+
+-- CREATE DATABASE address_book_service;
+
+-- USE address_book_service;
+
+-- UC2 --
+
+-- CREATE TABLE address_book (
+--     contact_id INT AUTO_INCREMENT PRIMARY KEY,
+--     first_name VARCHAR(50) NOT NULL,
+--     last_name VARCHAR(50) NOT NULL,
+--     address VARCHAR(100),
+--     city VARCHAR(50),
+--     state VARCHAR(50),
+--     zip VARCHAR(10),
+--     phone_number VARCHAR(15),
+--     email VARCHAR(50)
+-- );
+
+-- UC3
+
+-- INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone_number, email)
+-- VALUES
+-- ('Emily', 'Brown', '100 Sunset Blvd', 'Los Angeles', 'CA', '90001', '555-7890', 'emily.brown@example.com'),
+-- ('Michael', 'Davis', '321 Elm Street', 'New York', 'NY', '10001', '555-3456', 'michael.davis@example.com'),
+-- ('Sophia', 'Miller', '456 Birch Road', 'Chicago', 'IL', '60601', '555-4321', 'sophia.miller@example.com');
+
+-- SELECT * FROM address_book;
+
+-- UC4
+
+-- UPDATE address_book
+-- SET address = '789 Cedar Lane', phone_number = '555-9876'
+-- WHERE first_name = 'Sophia';
+
+-- UPDATE address_book
+-- SET email = 'sophia.newemail@example.com'
+-- WHERE last_name = 'Miller';
+
+-- UPDATE address_book
+-- SET city = 'San Francisco', state = 'CA'
+-- WHERE first_name = 'Sophia' AND last_name = 'Miller';
+
+-- SELECT * FROM address_book WHERE first_name = 'Sophia' AND last_name = 'Miller';
+
+-- UC5
+
+-- DELETE FROM address_book
+-- WHERE last_name = 'Miller';
+
+-- SELECT *
+-- FROM address_book
+-- WHERE last_name = 'Miller';
+
+-- UC6
+
+-- SELECT * FROM address_book
+-- WHERE city = 'Chicago';
+
+-- SELECT * FROM address_book
+-- WHERE state = 'IL';
+
+-- SELECT * FROM address_book
+-- WHERE city = 'Chicago' AND state = 'IL';
+
+-- UC7
+
+-- SELECT city, COUNT(*) AS contact_count
+-- FROM address_book
+-- GROUP BY city;
+
+-- SELECT state, COUNT(*) AS contact_count
+-- FROM address_book
+-- GROUP BY state;
+
+-- SELECT city,state, COUNT(*) AS contact_count
+-- FROM address_book
+-- GROUP BY city, state;
+
+-- UC8
+
+-- SELECT *
+-- FROM address_book
+-- WHERE city = 'New York'
+-- ORDER BY first_name ASC, last_name ASC;
+
+-- UC9
+
+-- ALTER TABLE address_book
+-- ADD COLUMN name VARCHAR(100),
+-- ADD COLUMN type VARCHAR(50);
+
+-- UPDATE address_book
+-- SET name = 'Emily Brown', type = 'Family'
+-- WHERE first_name = 'Emily' AND last_name = 'Brown';
+
+-- UPDATE address_book
+-- SET name = 'Michael Davis', type = 'Profession'
+-- WHERE first_name = 'Michael' AND last_name = 'Davis';
+
+-- UPDATE address_book
+-- SET name = 'Alice Johnson', type = 'Friends'
+-- WHERE first_name = 'Alice' AND last_name = 'Johnson';
+
+-- UPDATE address_book
+-- SET name = 'Tony Stark', type = 'Family'
+-- WHERE first_name = 'Tony' AND last_name = 'Stark';
+
+-- SELECT *
+-- FROM address_book
+-- WHERE type = 'Family'
+-- ORDER BY first_name ASC, last_name ASC;
+
+-- UC10
+
+-- SELECT type, COUNT(*) AS contact_count
+-- FROM address_book
+-- GROUP BY type;
+
+-- UC11
+
+-- INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone_number, email, name, type)
+-- VALUES ('John', 'Doe', '123 Elm Street', 'Springfield', 'IL', '62704', '555-1234', 'john.doe@example.com', 'John Doe', 'Friend');
+
+-- INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone_number, email, name, type)
+-- VALUES ('John', 'Doe', '123 Elm Street', 'Springfield', 'IL', '62704', '555-1234', 'john.doe@example.com', 'John Doe', 'Family');
+
+-- SELECT * FROM address_book;
+
+-- CREATE TABLE AddressBookType (
+-- type_id INT AUTO_INCREMENT PRIMARY KEY,
+-- type_name VARCHAR(50) NOT NULL
+-- );
+
+-- ALTER TABLE address_book
+-- ADD COLUMN type_id INT,
+-- ADD FOREIGN KEY (type_id) REFERENCES AddressBookType(type_id);
+
+-- INSERT INTO AddressBookType (type_name) VALUES ('Family'), ('Friends'), ('Profession');
+
+-- INSERT INTO address_book (first_name, last_name, address, city, state, zip, phone_number, email, type_id)
+-- VALUES ('John', 'Doe', '123 Elm Street', 'Springfield', 'IL', '62704', '555-1234', 'john.doe@example.com', 1);
